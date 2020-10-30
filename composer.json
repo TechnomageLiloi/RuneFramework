@@ -1,0 +1,20 @@
+{
+  "name": "anton-moskalenko/rune-framework",
+  "license": "Apache-2.0",
+  "description": "Rune Framework (RF) library",
+  "require": {
+    "php": "^7.0"
+  },
+  "type": "project",
+  "keywords": [
+    "framework",
+    "rune-framework",
+    "rf"
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Rune\\": "Backside"
+    }
+  }
+}
