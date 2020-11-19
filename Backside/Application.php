@@ -88,6 +88,8 @@ class Application
     {
         // @todo: assert filename
 
+        extract($data);
+
         ob_start();
         include($template);
         $output = ob_get_clean();
