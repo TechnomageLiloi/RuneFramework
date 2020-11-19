@@ -1,7 +1,6 @@
 var Rune = {
     API: {
         Request: function (
-            url,
             method,
             parameters,
             success,
@@ -10,7 +9,7 @@ var Rune = {
             // @todo Validate parameneters.
 
             $.ajax({
-                url: url,
+                url: window.location.href,
                 type: 'POST',
                 dataType: 'json',
                 data: {
