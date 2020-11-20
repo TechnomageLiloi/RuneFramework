@@ -96,4 +96,9 @@ class Application
 
         return $output;
     }
+
+    public function run(): string
+    {
+        return $this->compile();
+    }
 }
