@@ -1,6 +1,6 @@
 <?php
 
-namespace Rune\Configuration;
+namespace Rune\Services;
 
 /**
  * This is class, that manages configuration data.
@@ -11,14 +11,14 @@ namespace Rune\Configuration;
 class Manager
 {
     /**
-     * Config parameters.
+     * Services.
      *
      * @var array
      */
     private $data;
 
     /**
-     * Configuration manager constructor.
+     * Services manager constructor.
      *
      * @param array $data Configuration values for your site
      */
@@ -36,7 +36,7 @@ class Manager
     }
 
     /**
-     * Set config parameter (local of global)
+     * Set services parameter (local of global)
      *
      * @param string $name Parameter name.
      * @param $value Parameter value.
@@ -49,7 +49,7 @@ class Manager
     }
 
     /**
-     * Get config parameter (local of global).
+     * Get Services parameter (local of global).
      *
      * @param string $name Parameter name.
      * @return mixed Parameter value.
