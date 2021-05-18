@@ -8,7 +8,7 @@ namespace Rune\Application;
  * @link https://github.com/anton-moskalenko/rune-framework/wiki/Application
  * @package Application
  */
-abstract class Conceptual
+class Conceptual
 {
     /**
      * URL Regular Expression.
