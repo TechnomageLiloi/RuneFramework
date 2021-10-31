@@ -3,7 +3,7 @@
   "license": "Apache-2.0",
   "description": "Rune Framework (RF) library",
   "require": {
-    "php": "^8.0"
+    "php": "^7.1 || ^8.0"
   },
   "type": "project",
   "keywords": [
