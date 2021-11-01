@@ -2,7 +2,7 @@
 
 namespace Rune;
 
-use Rune\Configuration\Manager as ConfigurationManager;
+use Rune\Services\Manager as ConfigurationManager;
 use Rune\Application as RuneApplication;
 
 /**
@@ -18,7 +18,7 @@ class Manager
     /**
      * Configuration manager.
      *
-     * @var \Rune\Configuration\Manager
+     * @var \Rune\Services\Manager
      */
     private $config;
 
