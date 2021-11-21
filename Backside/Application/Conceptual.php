@@ -46,7 +46,12 @@ class Conceptual
      */
     public function api(string $name, array $parameters): array
     {
-        return [];
+        if(method_exists($this, $name)) {
+            return $this->$name($parameters);
+        }
+
+        // @todo Add php-judex exception.
+        throw new \Exception('No API method.');
     }
 
     /**
