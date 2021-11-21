@@ -46,6 +46,10 @@ class Conceptual
      */
     public function api(string $name, array $parameters): array
     {
+        if(empty($parameters)) {
+            $parameters = [];
+        }
+
         if(method_exists($this, $name)) {
             return $this->$name($parameters);
         }
