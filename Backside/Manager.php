@@ -52,8 +52,17 @@ class Manager
 
         $classApplicationFile = sprintf('%s/%s/Application.php', $base['root'], implode('/', $partsUrl));
         if(file_exists($classApplicationFile)) {
-            $fileApplication = new $classApplicationFile($this->config);
-            return $fileApplication->compile();
+            $namespaceApplicationString = $this->extractNamespace($classApplicationFile);
+
+            if(!is_null($namespaceApplicationString))
+            {
+                $classApplicationNamespace = sprintf('%s\Application', $namespaceApplicationString);
+
+                if(class_exists($classApplicationNamespace)) {
+                    $namespaceApplication = new $classApplicationNamespace($this->config);
+                    return $namespaceApplication->compile();
+                }
+            }
         }
 
         // Try to apply namespace application.
@@ -74,5 +83,21 @@ class Manager
         }
 
         return 'Application with this URL not found.';
+    }
+
+    private function extractNamespace($filename): ?string {
+        $ns = null;
+        $handle = fopen($filename, 'r');
+        if($handle) {
+            while (($line = fgets($handle)) !== false) {
+                if (strpos($line, 'namespace') === 0) {
+                    $parts = explode(' ', $line);
+                    $ns = rtrim(trim($parts[1]), ';');
+                    break;
+                }
+            }
+            fclose($handle);
+        }
+        return $ns;
     }
 }
