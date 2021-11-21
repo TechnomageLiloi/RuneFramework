@@ -5,54 +5,18 @@ namespace Rune\Application;
 /**
  * This is class, that every application should extend.
  *
- * @link https://github.com/anton-moskalenko/rune-framework/wiki/Application
  * @package Application
  */
 class Conceptual
 {
     /**
-     * URL Regular Expression.
-     * Would be checked with {@link preg_match()}.
+     * Get base output.
      *
-     * @var string
+     * @return string HTML output.
      */
-    public static $URL = '~\/$~';
-
-    /**
-     * Frontend install directory (from public root).
-     * Empty value means public root itself.
-     * <tt>false</tt> if it does not need to install.
-     *
-     * @var string
-     */
-    public static $Frontend = false;
-
-    /**
-     * Layout template file.
-     *
-     * @var string
-     */
-    private $filenameLayout;
-
-    /**
-     * Sets layout template.
-     *
-     * @param string $layout Layout template file.
-     */
-    public function setLayout(string $layout): void
+    protected function get(): string
     {
-        // @todo: assert filename
-        $this->filenameLayout = $layout;
-    }
-
-    /**
-     * Gets layout template.
-     *
-     * @return string Layout template file.
-     */
-    public function getLayout(): string
-    {
-        return $this->filenameLayout;
+        return '';
     }
 
     /**
@@ -62,7 +26,15 @@ class Conceptual
      */
     public function compile(): string
     {
-        return $this->render($this->filenameLayout);
+        if(isset($_POST['method']))
+        {
+            // API Request
+            return json_encode([
+                'response' => $this->api($_POST['method'], $_POST['parameters'])
+            ]);
+        }
+
+        return $this->get();
     }
 
     /**
@@ -72,7 +44,7 @@ class Conceptual
      * @param array $parameters API parameters.
      * @return array API
      */
-    public function get(string $name, array $parameters): array
+    public function api(string $name, array $parameters): array
     {
         return [];
     }
@@ -95,10 +67,5 @@ class Conceptual
         $output = ob_get_clean();
 
         return $output;
-    }
-
-    public function run(): string
-    {
-        return $this->compile();
     }
 }
