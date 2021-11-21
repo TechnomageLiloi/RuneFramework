@@ -39,10 +39,35 @@ class Manager
     public function run(): string
     {
         $url = $_SERVER['REQUEST_URI'];
+        $base = $this->config->get('base');
+
+        $partsUrl = explode('/', $url);
+        array_shift($partsUrl);
+
+        foreach ($partsUrl as $key => $partUrl) {
+            $partsUrl[$key] = ucfirst($partUrl);
+        }
+
+        // Try to apply application from file.
+
+        $classApplicationFile = sprintf('%s/%s/Application.php', $base['root'], implode('/', $partsUrl));
+        if(file_exists($classApplicationFile)) {
+            $fileApplication = new $classApplicationFile($this->config);
+            return $fileApplication->compile();
+        }
+
+        // Try to apply namespace application.
+
+        $classApplicationNamespace = sprintf('%s/Application', implode('/', $partsUrl));
+        if(class_exists($classApplicationNamespace)) {
+            $namespaceApplication = new $classApplicationNamespace($this->config);
+            return $namespaceApplication->compile();
+        }
 
         // @todo: assert base application
 
-        $classBaseApplication = $this->config->get('base')['application'];
+        // Try to apply base application.
+        $classBaseApplication = $base['application'];
         if(class_exists($classBaseApplication)) {
             $baseApplication = new $classBaseApplication($this->config);
             return $baseApplication->compile();
