@@ -20,21 +20,39 @@ class Conceptual
     }
 
     /**
+     * Handling exception.
+     *
+     * @param \Exception $exception
+     * @return string
+     * @throws \Exception
+     */
+    protected function exceptionHandling(\Exception $exception): string
+    {
+        throw $exception;
+    }
+
+    /**
      * Compiles page.
      *
      * @return string Full output page.
+     * @throws \Exception
      */
     public function compile(): string
     {
-        if(isset($_POST['method']))
+        try
         {
-            // API Request
-            return json_encode([
-                'response' => $this->api($_POST['method'], $_POST['parameters'])
-            ]);
-        }
+            if(isset($_POST['method']))
+            {
+                // API Request
+                return json_encode(['response' => $this->api($_POST['method'], $_POST['parameters'])]);
+            }
 
-        return $this->get();
+            return $this->get();
+        }
+        catch (\Exception $exception)
+        {
+            $this->exceptionHandling($exception);
+        }
     }
 
     /**
@@ -43,6 +61,7 @@ class Conceptual
      * @param string $name API method name.
      * @param array $parameters API parameters.
      * @return array API
+     * @throws \Exception
      */
     public function api(string $name, array $parameters): array
     {
