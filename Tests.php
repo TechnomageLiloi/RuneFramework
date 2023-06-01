@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Rune Framework Tests</title>
+  <title>Tests</title>
 
   <link rel="shortcut icon" type="image/png" href="/Tests/Jasmine/jasmine_favicon.png">
   <link rel="stylesheet" href="/Tests/Jasmine/jasmine.css">
