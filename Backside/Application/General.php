@@ -2,8 +2,6 @@
 
 namespace Rune\Application;
 
-use Liloi\Config\Pool;
-use Liloi\Config\Sparkle;
 use Rune\Application\Conceptual as ConceptualApplication;
 
 /**
@@ -30,7 +28,8 @@ class General extends ConceptualApplication
     {
         $default = [
             'page' => [
-                'title' => 'Test'
+                'title' => 'Test',
+                'start' => '// config[page][start]',
             ]
         ];
 

@@ -12,9 +12,7 @@
     <body>
         <!--<div id="head"></div>-->
         <div id="page">
-            <script>
-
-            </script>
+            <script><?php echo $config['page']['start']; ?></script>
         </div>
     </body>
 </html>
