@@ -27,10 +27,9 @@ class General extends ConceptualApplication
     public function setConfig(array $config): void
     {
         $default = [
-            'page' => [
-                'title' => 'Test',
-                'start' => '// config[page][start]',
-            ]
+            'title' => 'Test',
+            'start' => '// config[page][start]',
+            'scripts' => []
         ];
 
         $this->config = array_merge($default, $config);
@@ -41,6 +40,11 @@ class General extends ConceptualApplication
      */
     public function compile(): string
     {
+        if(isset($_POST['method']))
+        {
+            return json_encode(['response' => $this->api($_POST['method'], $_POST['parameters'])]);
+        }
+
         return $this->render(__DIR__ . '/Layout.tpl', [
             'config' => $this->getConfig()
         ]);
