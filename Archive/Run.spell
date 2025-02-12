@@ -9,4 +9,4 @@ then
 fi
 composer install
 
-php ./Archive/Build.php
+php ./Archive/Builder.php
