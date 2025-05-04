@@ -4,6 +4,9 @@
   "description": "Rune Framework (RF) library",
   "require": {
     "technomage-liloi/rune-api": "dev-main",
+    "technomage-liloi/rune-config": "dev-main",
+    "technomage-liloi/rune-tools": "dev-main",
+    "technomage-liloi/rune-dump": "dev-main",
     "php": "^7.1 || ^8.0",
     "ext-json": "*"
   },
